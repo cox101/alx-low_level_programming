@@ -12,4 +12,5 @@ printf("size if a long int: %d byte(s)\n", sizeof(long int));
 printf("size if a long long int: %d byte(s)\n", sizeof(long long int
 ));
 printf("size if a float: %d byte(s)\n", sizeof(float));
+return (0);
 }
