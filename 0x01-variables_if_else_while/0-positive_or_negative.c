@@ -3,19 +3,19 @@
 #include <time.h>
 
 int main() {
-    /* Seed the random number generator with the current time */
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    /* Seed the random number generator */
+    srand(time(NULL));
 
-    /* Generate a random number and assign it to the variable 'n' */
-    int n = std::rand();
+    /* Generate a random number and store it in the variable n */
+    int n = rand() % (2 * RAND_MAX) - RAND_MAX;
 
-    /* Check if 'n' is positive, zero, or negative and print the result */
+    /* Check if n is positive, zero, or negative */
     if (n > 0) {
-        std::cout << "The number " << n << " is positive" << std::endl;
+        printf("The number %d is positive\n", n);
     } else if (n == 0) {
-        std::cout << "The number " << n << " is zero" << std::endl;
+        printf("The number %d is zero\n", n);
     } else {
-        std::cout << "The number " << n << " is negative" << std::endl;
+        printf("The number %d is negative\n", n);
     }
 
     return 0;
