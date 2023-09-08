@@ -7,7 +7,7 @@ int main() {
     srand(time(NULL));
 
     /* Generate a random number and store it in the variable n */
-    int n = rand() % (2 * RAND_MAX) - RAND_MAX;
+    int n = rand() % (2 - RAND_MAX) - RAND_MAX;
 
     /* Check if n is positive, zero, or negative */
     if (n > 0) {
