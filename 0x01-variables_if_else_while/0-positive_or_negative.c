@@ -1,6 +1,6 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
     // Seed the random number generator with the current time
