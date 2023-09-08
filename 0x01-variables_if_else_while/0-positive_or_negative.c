@@ -1,24 +1,29 @@
+/* 
+ * File: 0-positive_or_negative.c
+ * Auth: cox101
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
-    /* Seed the random number generator */
-    srand(time(NULL));
+/*
+* main - prints a random numbers and states whether
+*         is a positive or a negative or zero
+* Return : 0 If successful
+*/
+int main(void)
+{
+        int n;
 
-    /* Generate a random number and store it in the variable n */
-    int n;
-   n = rand() % (2 - RAND_MAX) - RAND_MAX;
+        srand(time(0));
+        n = rand() - RAND_MAX / 2;
 
-    /* Check if n is positive, zero, or negative */
-    if (n > 0) {
-        printf("The number %d is positive\n", n);
-    } else if (n == 0) {
-        printf("The number %d is zero\n", n);
-    } else {
-        printf("The number %d is negative\n", n);
-    }
+        if (n > 0)
+                printf("%d is positive\n", n);
+        else if (n < 0)
+                printf("%d is negativee\n", n);
+        else
+                printf("%d is zero\n", n);
 
-    return 0;
+        return (0);
 }
-
