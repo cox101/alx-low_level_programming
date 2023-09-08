@@ -13,9 +13,9 @@ int main(void)
 {
        char letter;
 
-        for (letter = 'f'; letter <= 'q'; letter++)
-	       putchar(letter);	
-	       	putchar('\n);
+        for(letter = 'f'; letter <= 'z'; letter++)
+		putchar(letter);
+	putchar('\n');
 
-        return (0);
+	return (0);
 }
