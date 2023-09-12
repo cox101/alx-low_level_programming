@@ -1,4 +1,4 @@
-#include "cox101.h"
+#include "main.h"
 /**
  * main - Entry point
  *
