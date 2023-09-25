@@ -9,21 +9,26 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	int len;
+	int index;
 	/*Get length of needle for strncmp*/
 	if (*needle == 0)
 		return (haystack);
 
 	/*compare substring*/
-	while (*haystack )
+	while (*haystack)
 	{
-		len =0;
-		if (haystack[len] == needle[len])
+		index = 0;
+		if (haystack[index] == needle[index])
 		{
 			do{
-				if(needle[len +1 ] == '\0')
+				if(needle[index + 1 ] == '\0')
 			return (haystack);
-		len++;
+		index++;
+			}
+			while (haystack[index] == needle[index]);
+
+	}
+		haystack++;
 	}
 	return ('\0');
 }
