@@ -6,19 +6,24 @@
  * @needle: substring to find
  * Return: pointer to string with result of search
  */
+
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int len;
+	int len;
 	/*Get length of needle for strncmp*/
-	len = 0;
-	while (needle[len] != '\0')
-		len++;
+	if (*needle == 0)
+		return (haystack);
+
 	/*compare substring*/
-	while (*haystack != '\0')
+	while (*haystack )
 	{
-		if (_strncmp(haystack, needle, len) == 0)
+		len =0;
+		if (haystack[len] == needle[len])
+		{
+			do{
+				if(needle[len +1 ] == '\0')
 			return (haystack);
-		haystack++;
+		len++;
 	}
-	return (NULL);
+	return ('\0');
 }
