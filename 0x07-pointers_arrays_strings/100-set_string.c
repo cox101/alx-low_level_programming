@@ -6,7 +6,7 @@
  * @to: The char
  */
  
-void set_string(char **s, char *dest)
+void set_string(char **s, char *to)
 {
-	*s = dest;
+	*s = to;
 }
