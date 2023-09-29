@@ -4,35 +4,44 @@
  * Print the min number of the coin to make
  * a change for an ammount 
  * @argc: number of command line
- * @argv: array
- * Return; (0)
+ * @argv: array 
+ * return 
  */
-int main (int argc,  char **argv)
-{
-	int cents, macoin = 0;
 
-	if (argc == 1 || argc > 2)
-	{
-	printf("Error\n");
-	return (1);
-	}
+int minCoins(int cents) {
+    if (cents < 0) {
+        return 0;
+    }
 
-	cents = atoi(argv[1]);
+    int coins[] = {25, 10, 5, 2, 1};
+    int numCoins = sizeof(coins) / sizeof(coins[0]);
+    int count = 0;
 
-        while (cents > 0)
-        {
-	if (cents >= 25)
-		cents -= 25:
-			if (cents >= 10)
-                cents -= 10
-			if (cents >= 5)
-                cents -= 5:
-			if (cents >= 2)
-                cents -= 2:
-			if (cents >= 1)
-                cents -= 1:
-			mcoin += 1;
-          }
-	printf("%d\n", mcoin);
-	return (0);
+    for (int i = 0; i < numCoins; i++) {
+        while (cents >= coins[i]) {
+            cents -= coins[i];
+            count++;
+        }
+    }
+
+    return count;
 }
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Error\n");
+        return 1;
+    }
+
+    int cents = atoi(argv[1]);
+
+    if (cents < 0) {
+        printf("0\n");
+    } else {
+        int min = minCoins(cents);
+        printf("%d\n", min);
+    }
+
+    return 0;
+}
+
