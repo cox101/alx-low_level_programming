@@ -1,47 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * Print the min number of the coin to make
- * a change for an ammount 
- * @argc: number of command line
- * @argv: array 
- * return 
+ * main -> prints min cointo make change
+ * @argc: no of args
+ * @argv: array of string type
+ *
+ * Return: 0 if no errors, else 1
  */
+int main(int argc, char *argv[])
+{
+	int a, n = 0, i, t;
+	int c[5] = {25, 10, 5, 2, 1};
 
-int minCoins(int cents) {
-    if (cents < 0) {
-        return 0;
-    }
-
-    int coins[] = {25, 10, 5, 2, 1};
-    int numCoins = sizeof(coins) / sizeof(coins[0]);
-    int count = 0;
-
-    for (int i = 0; i < numCoins; i++) {
-        while (cents >= coins[i]) {
-            cents -= coins[i];
-            count++;
-        }
-    }
-
-    return count;
+	if (argc != 2)
+	{
+		puts("Error");
+		return (1);
+	}
+	a = atoi(argv[1]);
+	if (a <= 0)
+	{
+		puts("0");
+		return (1);
+	}
+	else
+	{
+		for (i = 0; i < 5; i++)
+		{
+			t = a / c[i];
+			a -= t * c[i];
+			n += t;
+			if (a == 0)
+				break;
+		}
+	}
+	printf("%d\n", n);
+	return (0);
 }
-
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        printf("Error\n");
-        return 1;
-    }
-
-    int cents = atoi(argv[1]);
-
-    if (cents < 0) {
-        printf("0\n");
-    } else {
-        int min = minCoins(cents);
-        printf("%d\n", min);
-    }
-
-    return 0;
-}
-
