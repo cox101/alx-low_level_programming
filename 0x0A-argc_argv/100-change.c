@@ -7,7 +7,7 @@
  * @argv: array
  * Return; (0)
  */
-int main (int argc,  char**argv)
+int main (int argc,  char **argv)
 {
 	int cents, macoin = 0;
 
@@ -16,10 +16,11 @@ int main (int argc,  char**argv)
 	printf("Error\n");
 	return (1);
 	}
-cents = atoi(argv[1]);
 
-while (cents > 0)
-{
+	cents = atoi(argv[1]);
+
+        while (cents > 0)
+        {
 	if (cents >= 25)
 		cents -= 25:
 			if (cents >= 10)
@@ -31,4 +32,7 @@ while (cents > 0)
 			if (cents >= 1)
                 cents -= 1:
 			mcoin += 1;
+          }
+	printf("%d\n", mcoin);
+	return (0);
 }
