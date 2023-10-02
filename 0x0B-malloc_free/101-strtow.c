@@ -3,6 +3,7 @@
 #include <string.h>
 #include "main.h"
 
+/* Function to count the number of words in a string */
 int countWords(char *str) {
     int count = 0;
     int isWord = 0;
@@ -19,6 +20,8 @@ int countWords(char *str) {
 
     return count;
 }
+ 
+/* Function to split a string into words */
 char **strtow(char *str) {
     if (str == NULL || *str == '\0') {
         return NULL;
@@ -27,7 +30,7 @@ char **strtow(char *str) {
     int numWords = countWords(str);
     char **wordArray = (char **)malloc((numWords + 1) * sizeof(char *));
     if (wordArray == NULL) {
-        return NULL; 
+        return NULL; /* Memory allocation failed */
     }
 
     int i = 0;
@@ -36,7 +39,7 @@ char **strtow(char *str) {
     while (token != NULL) {
         wordArray[i] = strdup(token);
         if (wordArray[i] == NULL) {
-          /*Memory allocation failed, free previously allocated memory and return NULL*/
+            /* Memory allocation failed, free previously allocated memory and return NULL*/
             for (int j = 0; j < i; j++) {
                 free(wordArray[j]);
             }
@@ -47,18 +50,20 @@ char **strtow(char *str) {
         token = strtok(NULL, " ");
     }
 
-    wordArray[i] = NULL; 
+    wordArray[i] = NULL; /* Mark the end of the word array */
     return wordArray;
 }
+
+// Function to free memory allocated for word array
 void freeWords(char **wordArray) {
     if (wordArray == NULL) {
         return;
     }
-
+    
     for (int i = 0; wordArray[i] != NULL; i++) {
         free(wordArray[i]);
     }
-
+    
     free(wordArray);
 }
 
@@ -77,3 +82,4 @@ int main() {
 
     return 0;
 }
+
