@@ -9,23 +9,22 @@
 size_t print_listint_safe(const listint_t *head)
 {
     const listint_t *current = head;
-    size_t count = 0;
-    const listint_t *loop_node = NULL;
+    size_t node_count = 0;
 
-    while (current != NULL)
+    while (current)
     {
-        count++;
-        printf("[%p] %d\n", (void *)current, current->n);
-        current = current->next;
-        if (current == loop_node)
+        printf("%d\n", current->n);
+        node_count++;
+
+        if (current - current->next > 0)
         {
-            fprintf(stderr, "Linked list loop detected. Exiting.\n");
+            printf("-> [%p] %d\n", (void *)current->next, current->next->n);
             exit(98);
         }
-        if (count == 1)
-            loop_node = head;
+
+        current = current->next;
     }
 
-    return count;
+    return node_count;
 }
 
