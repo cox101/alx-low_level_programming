@@ -5,25 +5,23 @@
  * @size: size of the array of the hash table
  * Return: Pointer to the newly created hash table
  */
+
 hash_table_t *hash_table_create(unsigned long int size)
 {
-    hash_table_t *ht;
-
     if (size == 0)
-        return (NULL);
+        return NULL;
 
-    ht = malloc(sizeof(hash_table_t));
+    hash_table_t *ht = malloc(sizeof(hash_table_t));
     if (!ht)
-        return (NULL);
+        return NULL;
 
     ht->size = size;
-    ht->array = calloc((size_t)ht->size, sizeof(hash_node_t *));
-    if (ht->array == NULL)
+    ht->array = calloc(size, sizeof(hash_node_t *));
+    if (!ht->array)
     {
-        free(ht);  // Free the hash table structure if array allocation fails
-        return (NULL);
+        free(ht);
+        return NULL;
     }
 
-    return (ht);
+    return ht;
 }
-
