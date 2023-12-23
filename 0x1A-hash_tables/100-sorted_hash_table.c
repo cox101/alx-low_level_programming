@@ -1,8 +1,4 @@
 #include "hash_tables.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-
 /**
  * shash_table_create - creates a sorted hash table
  * @size: size of the array of the hash table
@@ -40,50 +36,56 @@ shash_table_t *shash_table_create(unsigned long int size)
  * @value: value associated with the key (duplicated, can be an empty string)
  * Return: 1 if it succeeded, 0 otherwise
  */
+
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
-    shash_node_t *new_node, *current;
+    shash_node_t *new_node, *current, *prev;
 
-    if (ht == NULL || key == NULL || strcmp(key, "") == 0)
+    if (!ht || !key || !value)
         return (0);
 
     current = ht->shead;
+    prev = NULL;
 
-    /* Check if key already exists and update the value */
-    while (current != NULL)
+    while (current && strcmp(key, current->key) > 0)
     {
-        if (strcmp(current->key, key) == 0)
-        {
-            free(current->value);
-            current->value = strdup(value);
-            if (current->value == NULL)
-                return (0);
-            return (1);
-        }
+        prev = current;
         current = current->snext;
     }
 
-    /* Key doesn't exist, create a new node */
-    new_node = malloc(sizeof(shash_node_t));
-    if (new_node == NULL)
-        return (0);
-
-    new_node->key = strdup(key);
-    if (new_node->key == NULL)
+    if (current && strcmp(key, current->key) == 0)
     {
-        free(new_node);
-        return (0);
+        /* Key already exists, update the value */
+        free(current->value);
+        current->value = strdup(value);
+        if (!current->value)
+            return (0);
+    }
+    else
+    {
+        /* Key doesn't exist, create a new node */
+        new_node = create_shash_node(key, value);
+        if (!new_node)
+            return (0);
+
+        if (!prev)
+        {
+            /* Insert at the beginning */
+            new_node->snext = current;
+            ht->shead = new_node;
+        }
+        else
+        {
+            /* Insert in the middle or at the end */
+            new_node->snext = prev->snext;
+            prev->snext = new_node;
+        }
+
+        /* Update the tail if necessary */
+        if (!new_node->snext)
+            ht->stail = new_node;
     }
 
-    new_node->value = strdup(value);
-    if (new_node->value == NULL)
-    {
-        free(new_node->key);
-        free(new_node);
-        return (0);
-    }
-
-    shash_table_sorted_insert(ht, new_node);
     return (1);
 }
 
@@ -174,5 +176,8 @@ void shash_table_delete(shash_table_t *ht)
     {
         next = node->snext;
         free(node->key);
-        free(node
-
+        free(node->value);
+        free(node);
+        node = next;
+    }
+}
