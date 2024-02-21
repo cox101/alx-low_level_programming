@@ -1,17 +1,2 @@
-school: main.o student.o teacher.o
-    gcc -o school main.o student.o teacher.o
-
-main.o: main.c
-    gcc -c main.c
-
-student.o: student.c
-    gcc -c student.c
-
-teacher.o: teacher.c
-    gcc -c teacher.c
-
-all: school
-
-clean:
-    rm -f school *.o
-
+all : main.c school.c
+	gcc main.c school.c -o school
