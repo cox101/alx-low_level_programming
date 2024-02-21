@@ -1,22 +1,18 @@
 #!/usr/bin/python3
+"""Module that calculates the perimeter of an island in a grid."""
+
 
 def island_perimeter(grid):
-    """
-    Calculates the perimeter of the island described in the grid.
+    """Returns the perimeter of the island described in the grid.
+
+    The grid represents water by 0 and land by 1.
 
     Args:
-    - grid (list of list of integers): Represents the grid where 0 represents water and 1 represents land.
+        grid (list): A list of lists of integers representing an island.
 
     Returns:
-    - int: The perimeter of the island.
-
-    Constraints:
-    - Grid cells are connected horizontally/vertically (not diagonally).
-    - Grid is rectangular, width and height don’t exceed 100.
-    - Grid is completely surrounded by water, and there is one island (or nothing).
-    - The island doesn’t have “lakes” (water inside that isn’t connected to the water around the island).
+        The perimeter of the island defined in grid.
     """
-
     perimeter = 0
 
     for i in range(len(grid)):
@@ -29,3 +25,4 @@ def island_perimeter(grid):
                     perimeter -= 2
 
     return perimeter
+
